@@ -1,16 +1,41 @@
 # chartiq_flutter_poc
 
-A new Flutter project.
+This rough proof-of-concept demonstrates using a WebView with Flutter to render a ChartIQ chart. It is not definitive or prescriptive—simply an example.
 
-## Getting Started
+# Setup
 
-This project is a starting point for a Flutter application.
+1. Include a build of ChartIQ in `assets/chartiq`. It will likely be best to use the output of a Webpacked build to simplify the process.
+1. Add `webview_flutter_plus` as a dependency in `pubspec.yaml`:
 
-A few resources to get you started if this is your first Flutter project:
+    ```yaml
+    dependencies:
+      webview_flutter_plus: ^0.2.3+1P
+    ```
+1. Allow access to `assets` in `pubspec.yaml`:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+    ```yaml
+     assets:
+        - assets/chartiq/js/
+        - assets/chartiq/js/thirdparty/
+        - assets/chartiq/css/
+        - assets/chartiq/css/img/
+        - assets/chartiq/
+    ```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Include the webview in the .dart file:
+
+    ```js
+    body: Center(
+        child: WebViewPlus(
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (controller) {
+            controller.loadUrl('assets/chartiq/index.html');
+          },
+        ),
+      ),
+    ```
+
+# Expected Outcome
+
+![](_assets/example.png)
+
