@@ -1,7 +1,9 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
+  if (Platform.isAndroid) WebView.platform = AndroidWebView();
   runApp(const MyApp());
 }
 
@@ -77,7 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("AAPL"),
       ),
       body: WebView(
-        initialUrl: 'https://flutter.dev',
+        initialUrl: 'http://192.168.86.46:5500/chartiq/technical-analysis-chart.html',
+        javascriptMode: JavascriptMode.unrestricted,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
