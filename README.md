@@ -35,6 +35,10 @@ This rough proof-of-concept demonstrates using a WebView with Flutter to render 
       ),
     ```
 
+# Run
+
+1. `flutter run`
+
 # Expected Outcome
 
 ![](_assets/example.png)
