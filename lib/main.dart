@@ -53,6 +53,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  String symbol = "AAPL";
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -76,17 +78,27 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text("AAPL"),
+        title: Text(symbol),
       ),
       body: WebView(
-        initialUrl: 'http://192.168.86.46:5500/chartiq/technical-analysis-chart.html',
+        initialUrl: 'http://10.51.225.234:5501/technical-analysis-chart.html',
         javascriptMode: JavascriptMode.unrestricted,
+        javascriptChannels: Set.from([
+          JavascriptChannel(
+              name: 'messageHandler',
+              onMessageReceived: (JavascriptMessage message) {
+                setState(() {
+                  symbol = message.message;
+                });
+              })
+        ]),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: const Icon(Icons.add),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
