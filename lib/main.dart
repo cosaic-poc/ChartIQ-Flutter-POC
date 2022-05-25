@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(symbol),
       ),
       body: WebView(
-        initialUrl: 'http://10.51.225.234:5501/technical-analysis-chart.html',
+        initialUrl: 'http://192.168.1.120:5502/technical-analysis-chart.html',
         javascriptMode: JavascriptMode.unrestricted,
         javascriptChannels: Set.from([
           JavascriptChannel(
